@@ -50,6 +50,7 @@ struct Node *deleteLastNode(struct Node *head)
 
         p = p->next;
         q = q->next;
+    
     }
     p->next = NULL;
     free(q);
