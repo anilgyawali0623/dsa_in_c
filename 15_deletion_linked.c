@@ -17,7 +17,6 @@ void linkedListTraversal(struct Node *ptr)
     }
 }
 
-//   case 1 deleting the first node
 struct Node *deletionFirst(struct Node *head)
 {
     struct Node *ptr = head;
@@ -50,7 +49,6 @@ struct Node *deleteLastNode(struct Node *head)
 
         p = p->next;
         q = q->next;
-    
     }
     p->next = NULL;
     free(q);
@@ -67,11 +65,12 @@ struct Node *deleteGivenValue(struct Node *head, int value)
         p = p->next;
         q = q->next;
     }
-      if(q->data==value){
+    if (q->data == value)
+    {
         p->next = q->next;
         free(q);
-      }
- 
+    }
+
     return head;
 }
 
@@ -101,9 +100,10 @@ int main()
     // head=deletionFirst(head); for deleting first element of the linked list
     // head = deleteAtIndex(head, 2); deleting the node of nth index
     //  head=deleteLastNode(head); deleting the last node
-    head= deleteGivenValue(head,13);
+    head = deleteGivenValue(head, 13);
 
     printf(" linked list after deletion\n");
     linkedListTraversal(head);
     return 0;
 }
+
