@@ -1,56 +1,65 @@
-#include <stdio.h>
-#include <stdlib.h>
-
+#include<stdio.h>
+#include<stdlib.h>
+ 
 struct Node
 {
     int data;
     struct Node *next;
 };
-
-void linkedListTraversal(struct Node *head)
-{
+ 
+void linkedListTraversal(struct Node *head){
     struct Node *ptr = head;
-    do
-    {
-        printf("element is %d \n", ptr->data);
+    do{
+        printf("Element is %d\n", ptr->data);
         ptr = ptr->next;
-    } while (ptr->next != NULL);
+    }while(ptr!=head);
 }
-
-struct Node *insertionAtFirst(struct Node *head, int data)
-{
-    struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
+ 
+struct Node * insertAtFirst(struct Node *head, int data){
+    struct Node * ptr = (struct Node *) malloc(sizeof(struct Node));
     ptr->data = data;
-    struct Node *p = head->next;
-    p = p->next;
+ 
+    struct Node * p = head->next;
+    while(p->next != head){
+        p = p->next;
+    }
+    // At this point p points to the last node of this circular linked list
+ 
     p->next = ptr;
     ptr->next = head;
+    head = ptr;
     return head;
+ 
 }
-int main()
-{
+ 
+int main(){
+    
     struct Node *head;
     struct Node *second;
     struct Node *third;
-    struct Node *forth;
-
+    struct Node *fourth;
+ 
+    // Allocate memory for nodes in the linked list in Heap
     head = (struct Node *)malloc(sizeof(struct Node));
     second = (struct Node *)malloc(sizeof(struct Node));
     third = (struct Node *)malloc(sizeof(struct Node));
-    forth = (struct Node *)malloc(sizeof(struct Node));
-    head->data = 7;
+    fourth = (struct Node *)malloc(sizeof(struct Node));
+ 
+    // Link first and second nodes
+    head->data = 4;
     head->next = second;
-
-    second->data = 17;
+ 
+    // Link second and third nodes
+    second->data = 3;
     second->next = third;
-
-    third->data = 172;
-    third->next = forth;
-    forth->data = 171;
-    forth->next = NULL;
-
-    linkedListTraversal(head);
-
-    free(forth);
+ 
+    // Link third and fourth nodes
+    third->data = 6;
+    third->next = fourth;
+ 
+    // Terminate the list at the third node
+    fourth->data = 1;
+    fourth->next = head;
+ 
     return 0;
 }

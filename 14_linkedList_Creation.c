@@ -23,7 +23,6 @@ int main()
     struct Node *third;
     struct Node *forth;
 
-
     head = (struct Node *)malloc(sizeof(struct Node));
     second = (struct Node *)malloc(sizeof(struct Node));
     third = (struct Node *)malloc(sizeof(struct Node));

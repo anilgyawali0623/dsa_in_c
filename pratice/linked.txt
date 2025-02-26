@@ -1,0 +1,7 @@
+alog for the deletion of first node
+ so we create the function of struct type pointer passing argument of head
+ we will create another pointer ptr pointing to head
+as we are deleting the first node 
+set the head to the next to next node 
+head=head->next
+free(ptr)
