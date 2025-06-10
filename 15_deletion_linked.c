@@ -7,25 +7,24 @@ struct Node
     struct Node *next;
 };
 
-void linkedListTraversal(struct Node *ptr)
+void traversal(struct Node *ptr)
 {
-    printf("%d", ptr->data);
     while (ptr != NULL)
     {
-        printf("element:%d\n", ptr->data);
+        printf("%d\n", ptr->data);
         ptr = ptr->next;
     }
 }
-
-struct Node *deletionFirst(struct Node *head)
+struct Node *deleteFirst(struct Node *head)
 {
+
     struct Node *ptr = head;
-    head = head->next;
+    head = ptr->next;
     free(ptr);
     return head;
 }
 
-struct Node *deleteAtIndex(struct Node *head, int index)
+struct Node *deleteIndex(struct Node *head, int index)
 {
     struct Node *p = head;
     struct Node *q = head->next;
@@ -34,12 +33,26 @@ struct Node *deleteAtIndex(struct Node *head, int index)
         p = p->next;
         q = q->next;
     }
+
     p->next = q->next;
     free(q);
     return head;
 }
 
-//  delete the last node
+// struct Node *deleteLastNode(struct Node *head)
+// {
+//     struct Node *p = head;
+//     struct Node *q = head->next;
+//     while (q->next != NULL)
+//     {
+//         p = p->next;
+//         q = q->next;
+//     }
+//     p->next = NULL;
+//     free(q);
+//     return head;
+// }
+
 struct Node *deleteLastNode(struct Node *head)
 {
     struct Node *p = head;
@@ -50,60 +63,61 @@ struct Node *deleteLastNode(struct Node *head)
         p = p->next;
         q = q->next;
     }
+
     p->next = NULL;
     free(q);
     return head;
 }
 
-struct Node *deleteGivenValue(struct Node *head, int value)
+struct Node *deleteNodeValue(struct Node *head, int value)
 {
     struct Node *p = head;
     struct Node *q = head->next;
+
     while (q->data != value && q->next != NULL)
     {
-
         p = p->next;
         q = q->next;
     }
+
     if (q->data == value)
     {
+        printf("value with that node is deleted\n");
         p->next = q->next;
         free(q);
     }
-
-    return head;
+    else
+    {
+        printf("there is no such value\n");
+    }
+     return head;
 }
 
 int main()
 {
     struct Node *head;
+    struct Node *first;
     struct Node *second;
     struct Node *third;
-    struct Node *forth;
 
     head = (struct Node *)malloc(sizeof(struct Node));
+    first = (struct Node *)malloc(sizeof(struct Node));
     second = (struct Node *)malloc(sizeof(struct Node));
     third = (struct Node *)malloc(sizeof(struct Node));
-    forth = (struct Node *)malloc(sizeof(struct Node));
-    head->data = 7;
-    head->next = second;
+    head->data = 1;
+    head->next = first;
+    first->data = 2;
+    first->next = second;
 
-    second->data = 17;
+    second->data = 3;
     second->next = third;
+    third->data = 4;
+    third->next = NULL;
+    traversal(head);
+    // head = deleteFirst(head);
+    // head = deleteAtIndex(head, 2);
+  head= deleteNodeValue(head, 3);
 
-    third->data = 172;
-    third->next = forth;
-    forth->data = 171;
-    forth->next = NULL;
-    printf(" linked list before deletion\n");
-    linkedListTraversal(head);
-    // head=deletionFirst(head); for deleting first element of the linked list
-    // head = deleteAtIndex(head, 2); deleting the node of nth index
-    //  head=deleteLastNode(head); deleting the last node
-    head = deleteGivenValue(head, 13);
-
-    printf(" linked list after deletion\n");
-    linkedListTraversal(head);
-    return 0;
+    printf("after \n");
+    traversal(head);
 }
-

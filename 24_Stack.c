@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct stack
+#include <conio.h>
+//  top is not the pointer
+struct Stack
 {
     int size;
     int top;
     int *arr;
 };
-int isEmpty(struct stack *ptr)
+
+int isEmpty(struct Stack *ptr)
 {
     if (ptr->top == -1)
     {
@@ -18,34 +21,34 @@ int isEmpty(struct stack *ptr)
     }
 }
 
-int isFull(struct stack *ptr)
+int isFull(struct Stack *ptr)
 {
     if (ptr->top == ptr->size - 1)
     {
-         return 1;
+        return 1;
     }
     else
     {
-         return 0;
+        return 0;
     }
 }
 
 int main()
 {
-    // struct stack s;
-    // s.size = 80;
-    // s.top = -1;
-    // s.arr = (int *)malloc(s.size * sizeof(int));
-
-    struct stack *s;
-    s->size = 80;
-    s->top = -1;
+    
+    struct Stack *s;
     s->arr = (int *)malloc(s->size * sizeof(int));
-//  check if stack is empty
-if(isEmpty(s)){
-     printf("the stack is empty");
-}else{
-     printf("the stack is not empty\n");
-}
+    s->top = -1;
+    s->size = 5;
+
+    if (isEmpty(s))
+    {
+        printf("the stack is empty\n");
+    }
+    else
+    {
+        printf("the stack is not empty\n");
+    }
+
     return 0;
 }
