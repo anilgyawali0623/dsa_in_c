@@ -1,7 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+/*
+data: storage
+insertaiton end pointer
+deletiion end pointer
+
+
+method: enqueue
+dequeue
+
+
+*/
+
 struct queue
 {
+
     int size;
     int f;
     int r;
@@ -14,8 +28,10 @@ int isFull(struct queue *q)
     {
         return 1;
     }
-
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 
 int isEmpty(struct queue *q)
@@ -24,14 +40,16 @@ int isEmpty(struct queue *q)
     {
         return 1;
     }
-
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 void enqueue(struct queue *q, int val)
 {
     if (isFull(q))
     {
-        printf("this queue is full\n");
+        printf("queue is full\n");
     }
     else
     {
@@ -54,14 +72,15 @@ int dequeue(struct queue *q)
     }
     return a;
 }
+
 int main()
 {
-    struct queue q;
 
-    q.size = 100;
-    q.f = q.r = -1;
-    q.arr = (int *)malloc(q.size * sizeof(int));
-    enqueue(&q, 1);
+    struct queue *q;
+    q->size = 100;
+    q->f = q->r = -1;
+    q->arr = (int *)malloc(q->size * sizeof(int));
 
+    return 0;
     return 0;
 }
