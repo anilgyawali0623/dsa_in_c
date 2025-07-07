@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 struct circularQueue
 {
     int size;
-    int f;
-    int r;
+    int f, r;
     int *arr;
 };
 
@@ -14,8 +14,10 @@ int isFull(struct circularQueue *q)
     {
         return 1;
     }
-
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 
 int isEmpty(struct circularQueue *q)
@@ -24,18 +26,21 @@ int isEmpty(struct circularQueue *q)
     {
         return 1;
     }
-
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
+
 void enqueue(struct circularQueue *q, int val)
 {
     if (isFull(q))
     {
-        printf("this queue is full\n");
+        printf("queue is full\n");
     }
     else
     {
-        q->r=(q->r+1)%q->size;
+        q->r = (q->r + 1) % q->size;
         q->arr[q->r] = val;
     }
 }
@@ -49,19 +54,19 @@ int dequeue(struct circularQueue *q)
     }
     else
     {
-        q->f=(q->f+1)%q->size;
+        q->f = (q->f + 1) % q->size;
         a = q->arr[q->f];
     }
     return a;
 }
+
 int main()
 {
-    struct circularQueue q;
 
-    q.size = 5;
-    q.f = q.r =0;
-    q.arr = (int *)malloc(q.size * sizeof(int));
-    enqueue(&q, 1);
+    struct circularQueue *q;
+    q->size = 100;
+    q->f = q->r = 0;
+     q->arr = (int *)malloc(q->size * sizeof(int));
 
     return 0;
 }
